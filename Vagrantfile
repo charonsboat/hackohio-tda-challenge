@@ -70,6 +70,8 @@ Vagrant.configure(2) do |config|
     ##
     ######
 
+        #### - REMOTE SCRIPTS
+
         ####
         ## base server configuration
         ####
@@ -109,4 +111,39 @@ Vagrant.configure(2) do |config|
 
         # call nginx provisioner
         config.vm.provision :shell, privileged: false, path: "#{scripts_url}/nginx", args: [ args_nginx_document_root, args_nginx_hostname, args_nginx_ip_address ]
+
+
+        #### - LOCAL SCRIPTS
+
+        ####
+        ## mysql
+        ####
+
+        # @param: database name
+        args_db_name = "dev"
+
+        # @param: database user
+        args_db_user = "dev"
+
+        # @param: database password
+        args_db_pass = "dev"
+
+        # call mysql provisioner
+        config.vm.provision :shell, privileged: false, path: "vagrant/scripts/mysql", args: [ args_db_name, args_db_user, args_db_pass ]
+
+
+        ####
+        ## composer
+        ####
+
+        # call composer provisioner
+        config.vm.provision :shell, privileged: false, path: "vagrant/scripts/composer"
+
+
+        ####
+        ## laravel
+        ####
+
+        # call laravel provisioner
+        #config.vm.provision :shell, privileged: false, path: "vagrant/scripts/laravel"
 end
