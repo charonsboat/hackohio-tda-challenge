@@ -123,4 +123,10 @@ class HomeController extends Controller
     {
         echo 'Hi.';
     }
+
+    public function graph ()
+    {
+    	return view('graph');
+    }
 }
+
