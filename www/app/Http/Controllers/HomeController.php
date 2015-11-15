@@ -16,18 +16,18 @@ class HomeController extends Controller
      */
     private function cleanUpFile($filename){
 
-
+        return;
     }
 
 
-    public function index()
+    public function index() # INDEX WILL GIVE US TOP WORDS IN EACH CATEGORY
     {
-        $data_jobs    = str_getcsv(Storage::get('officialRemovedFillerX.csv'));
-        $data_stud = str_getcsv(Storage::get('studentRemovedFillerX.csv'));
-        var_dump($data_jobs);
-        echo(count($data_jobs));
-        echo(' :: ');
-        echo(count($data_stud[1]));
+
+        $data_jobs    = str_getcsv(Storage::get('jobsFiller.csv'));
+        $data_stud = str_getcsv(Storage::get('studFiller.csv'));
+
+        #var_dump($data_jobs);
+
 
 
         $practice_string_array = ['hello','Goodbye!','goodbye','no','yes'];
@@ -63,6 +63,36 @@ class HomeController extends Controller
         echo('<br>');
         echo('<br>');
         echo("A WebApp by TaDA and Company");
+
+        $this->compareTwo("hello");
+
         return view('home');
+    }
+
+    private function compareTwo($filename){
+
+       # $data_jobs    = str_getcsv(Storage::get('jobsFiller.csv'));
+       # $data_stud = str_getcsv(Storage::get('studFiller.csv'));
+
+
+        $data_jobs    = ['hello','Goodbye!','goodbye','no','yes'];
+        $data_stud = ['hello','Goodbye!','goodbye','no','yes'];
+        $sim_count = 0;
+        for ($i = 0; $i < ((count($data_jobs))) ; $i++) {
+            for ($j = 0; $j < ((count($data_stud))) ; $j++) {
+                if ($data_stud[$j] == $data_jobs[$i]){
+                    $sim_count += 1;
+                }
+            }
+        }
+
+        echo('Similar Words: ');
+        echo($sim_count);
+        echo('<br>');
+        echo('<br>');
+        echo("A WebApp by TaDA and Company");
+        return view('home');
+
+
     }
 }
