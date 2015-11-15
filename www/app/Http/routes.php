@@ -16,3 +16,8 @@
 // });
 
 Route::get('/', 'HomeController@index');
+
+Route::group(['prefix' => 'analyze'], function ()
+{
+    Route::get('/{column}', [ 'uses' => 'HomeController@analyzeColumn' ]);
+});

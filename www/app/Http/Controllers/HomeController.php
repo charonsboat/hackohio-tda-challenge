@@ -20,13 +20,36 @@ class HomeController extends Controller
     }
 
 
-    public function index() # INDEX WILL GIVE US TOP WORDS IN EACH CATEGORY
+    public function analyzeColumn($column)
     {
+        // read jobs data
+        $jobs_handle = fopen(storage_path() . '/app/jobsFiller.csv', 'r');
+        $jobs_data   = [];
 
-        $data_jobs    = str_getcsv(Storage::get('jobsFiller.csv'));
-        $data_stud = str_getcsv(Storage::get('studFiller.csv'));
+        while ($data = fgetcsv($jobs_handle))
+        {
+            $jobs_data[] = $data;
+        }
 
-        #var_dump($data_jobs);
+        fclose($jobs_handle);
+
+        // read students data
+        $stud_handle = fopen(storage_path() . '/app/studFiller.csv', 'r');
+        $stud_data   = [];
+
+        while ($data = fgetcsv($stud_handle))
+        {
+            $stud_data[] = $data;
+        }
+
+        fclose($stud_handle);
+
+
+        // dump data for test view
+        var_dump($jobs_data);
+        echo(count($jobs_data));
+        echo(' :: ');
+        echo(count($stud_data[1]));
 
 
 
@@ -94,5 +117,10 @@ class HomeController extends Controller
         return view('home');
 
 
+    }
+
+    public function index()
+    {
+        echo 'Hi.';
     }
 }
