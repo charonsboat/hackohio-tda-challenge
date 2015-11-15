@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Storage;
 
 class HomeController extends Controller
 {
@@ -13,10 +14,21 @@ class HomeController extends Controller
      *
      * @return Response
      */
+    private function cleanUpFile($filename){
+
+
+    }
+
+
     public function index()
     {
-        $data_jobs    = str_getcsv(Storage::get('jobs.csv'));
-        $data_resumes = str_getcsv(Storage::get('resumes.csv'));
+        $data_jobs    = str_getcsv(Storage::get('officialRemovedFillerX.csv'));
+        $data_stud = str_getcsv(Storage::get('studentRemovedFillerX.csv'));
+        var_dump($data_jobs);
+        echo(count($data_jobs));
+        echo(' :: ');
+        echo(count($data_stud[1]));
+
 
         $practice_string_array = ['hello','Goodbye!','goodbye','no','yes'];
 
@@ -31,11 +43,16 @@ class HomeController extends Controller
             }
         }
         $my_size = count($array);
+        echo('Most Common Words:   File Size:');
+        echo( count($practice_string_array));
         echo('<br>');
-        echo("Size: ");
-        echo($my_size);
         echo('<br>');
         echo('<br>');
+
+        foreach ($array as $key => $value){
+            $akey[$key] = $value;
+        }
+        array_multisort($akey, SORT_DESC, $array);
         foreach ($array as $key => $value){
             echo($key);
             echo(' :: ');
@@ -45,7 +62,7 @@ class HomeController extends Controller
 
         echo('<br>');
         echo('<br>');
-        echo("Ben is doing work");
+        echo("A WebApp by TaDA and Company");
         return view('home');
     }
 }
