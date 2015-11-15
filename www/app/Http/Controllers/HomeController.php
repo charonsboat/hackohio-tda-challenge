@@ -15,6 +15,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $data_jobs    = str_getcsv(Storage::get('jobs.csv'));
+        $data_resumes = str_getcsv(Storage::get('resumes.csv'));
+
         $practice_string_array = ['hello','Goodbye!','goodbye','no','yes'];
 
         $array = array();
