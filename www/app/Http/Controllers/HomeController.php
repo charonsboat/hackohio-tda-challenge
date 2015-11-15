@@ -19,15 +19,36 @@ class HomeController extends Controller
 
     }
 
-
-    public function index()
+    public function analyzeColumn($column)
     {
-        $data_jobs    = str_getcsv(Storage::get('officialRemovedFillerX.csv'));
-        $data_stud = str_getcsv(Storage::get('studentRemovedFillerX.csv'));
-        var_dump($data_jobs);
-        echo(count($data_jobs));
+        // read jobs data
+        $jobs_handle = fopen(storage_path() . '/app/jobsFiller.csv', 'r');
+        $jobs_data   = [];
+
+        while ($data = fgetcsv($jobs_handle))
+        {
+            $jobs_data[] = $data;
+        }
+
+        fclose($jobs_handle);
+
+        // read students data
+        $stud_handle = fopen(storage_path() . '/app/studFiller.csv', 'r');
+        $stud_data   = [];
+
+        while ($data = fgetcsv($stud_handle))
+        {
+            $stud_data[] = $data;
+        }
+
+        fclose($stud_handle);
+
+
+        // dump data for test view
+        var_dump($jobs_data);
+        echo(count($jobs_data));
         echo(' :: ');
-        echo(count($data_stud[1]));
+        echo(count($stud_data[1]));
 
 
         $practice_string_array = ['hello','Goodbye!','goodbye','no','yes'];
@@ -64,5 +85,10 @@ class HomeController extends Controller
         echo('<br>');
         echo("A WebApp by TaDA and Company");
         return view('home');
+    }
+
+    public function index()
+    {
+        echo 'Hi.';
     }
 }
