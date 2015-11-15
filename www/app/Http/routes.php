@@ -21,3 +21,8 @@ Route::group(['prefix' => 'analyze'], function ()
 {
     Route::get('/{column}', [ 'uses' => 'HomeController@analyzeColumn' ]);
 });
+
+Route::get('/walter-test', function()
+{
+    return view('walter-test');
+});

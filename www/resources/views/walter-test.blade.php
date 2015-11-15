@@ -20,7 +20,7 @@
 
 </style>
 <body>
-<script src="{{ HTML::script('js/script.js') }}"</script>
+  <script src="{{ URL::script('js/d3.js')  }}"></script>
 <script>
 
 var width = 960,
