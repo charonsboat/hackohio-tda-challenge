@@ -17,7 +17,6 @@
 
 Route::get('/', 'HomeController@index');
 
-<<<<<<< Updated upstream
 Route::group(['prefix' => 'analyze'], function ()
 {
     Route::get('/{column}', [ 'uses' => 'HomeController@analyzeColumn' ]);
@@ -27,7 +26,5 @@ Route::get('/walter-test', function()
 {
     return view('walter-test');
 });
-=======
-Route::get('/graph', 'HomeController@graph');
 
->>>>>>> Stashed changes
+Route::get('/graph', 'HomeController@graph');
