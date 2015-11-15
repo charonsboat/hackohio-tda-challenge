@@ -1,4 +1,7 @@
 *
 !.gitignore
-!jobs.csv
-!resumes.csv
+!allFillers.csv
+!jobsFiller.csv
+!jobsFillerUnique.csv
+!studFiller.csv
+!studFillerUnique.csv
