@@ -165,6 +165,3 @@ fi
 
 printf "#### Running Composer Install..."
 composer install
-
-printf "#### Running NPM Install..."
-npm install
